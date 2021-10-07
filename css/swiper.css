@@ -68,6 +68,10 @@
     background: #000; 
     opacity: .2;
 }
+.swiper-container2 .swiper-slide:after {
+    opacity: 0;
+}
+
 .swiper-slide-invisible-blank {
     visibility: hidden;
 }
