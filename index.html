@@ -3,8 +3,7 @@
 
 <head>
 	<meta charset="UTF-8">
-	<meta name="viewport"
-		content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, width=device-width">
+	<meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, width=device-width">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<meta name="author" content="webstoryboy">
 	<meta name="description" content="메가박스 사이트 따라하면서 배우는 튜토리얼입니다.">
@@ -745,7 +744,7 @@
 				<div class="new">
 					<h2>새로운 영화</h2>
 					<div class="new_left">
-						<div class="play">
+						<div class="play" id="showTrailer" data-youtube="F1239ZePXfM">
 							<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
 								xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 120 120"
 								style="enable-background:new 0 0 120 120;" xml:space="preserve">
@@ -1466,95 +1465,23 @@
 	</footer>
 	<!-- //footer -->
 
+	<!-- 트레일러 -->
+	<aside id="blackout" class="overlay">
+		<div id="trailerModal" class="modal">
+			<div id="trailer"></div><!-- YouTube 플레이어로 대체되는 부분 -->
+		</div>
+		<button id="hideTrailer" class="modal_close">닫기</button>
+	</aside>
+	<!-- //트레일러 -->
+
 	<!-- 자바스크립트 라이브러리 -->
 	<script src="js/jquery.min_1.12.4.js"></script>
 	<script src="js/modernizr-custom.js"></script>
 	<script src="js/ie-checker.js"></script>
 	<script src="js/swiper.min.js"></script>
-	<script>
-
-		// 배너 이미지 슬라이드
-		var mySwiper = new Swiper('.swiper-container', {
-			navigation: {
-				nextEl: '.swiper-button-next',
-				prevEl: '.swiper-button-prev',
-			},
-			pagination: {
-				el: '.swiper-pagination',
-				type: 'bullets'
-			},
-			autoplay: {
-				delay: 5000,
-			},
-		});
-
-		// 영화차트 이미지 슬라이드
-		var mySwiper = new Swiper('.swiper-container2', {
-			slidesPerView: 4,
-			spaceBetween: 24,
-			// mousewheel: {
-			// 	invert: true,
-			// },
-			keyboard: {
-				enabled: true,
-				onlyInViewport: false,
-			},
-			autoplay: {
-				delay: 6000,
-			},
-			breakpoints: {
-				600: {
-					slidesPerView: 1.4,
-					spaceBetween: 24
-				},
-				768: {
-					slidesPerView: 2,
-					spaceBetween: 24
-				},
-				960: {
-					slidesPerView: 3,
-					spaceBetween: 24
-				}
-			}
-		});
-
-
-		// 영화차트 탭 메뉴
-		var movBtn = $(".movie_title > ul > li");
-		var movCont = $(".movie_chart > div");
-
-		movCont.hide().eq(0).show();
-
-		movBtn.click(function (e) {
-			e.preventDefault();
-			var target = $(this);
-			var index = target.index();
-			// alert(index);
-			movBtn.removeClass("active");
-			target.addClass("active");
-			movCont.css("display", "none");
-			movCont.eq(index).css("display", "block");
-		});
-
-		// 공지사항 탭 메뉴
-		var tabMenu = $(".notice");
-
-		//컨텐츠 내용을 숨겨주세요!
-		tabMenu.find("ul>li>ul").hide();
-		tabMenu.find("li.active > ul").show();
-
-		function tabList(e) {
-			e.preventDefault();	// #의 기능을 차단
-			var target = $(this);
-
-			target.next().show().parent("li").addClass("active").siblings("li").removeClass("active").find("ul").hide();
-			// 버튼을 클릭하면 ~ul을 보여주고
-			// 부모의 li 태그에 클래스 추가하고
-			// 형제의 li 태그에 클래스 제거하고
-			// 제거한 자식의 ul 태그를 숨겨줌
-		}
-		tabMenu.find("ul>li>a").click(tabList).focus(tabList);
-	</script>
+	<script src="js/iframe_api.js"></script>
+	<script src="js/movie.js"></script>
+	<script src="js/custom.js"></script>
 </body>
 
 </html>
